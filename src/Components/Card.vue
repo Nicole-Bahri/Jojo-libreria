@@ -1,13 +1,13 @@
 <template>
     <div class="flex flex-col overflow-hidden rounded-xl shadow-xl">
       <div>
-        <img :src="character.image" alt="" />
+        <img v-if="props.character" :src="`https://jojos-bizarre-api.netlify.app/assets/${props.character.image}`" alt="image" width="200" height="350"/>
       </div>
       <div>
         <h3>{{ props.character.name }}</h3>
       </div>
     </div>
-  </template>
+</template>
 
 <script setup>
 const props = defineProps({
@@ -16,7 +16,4 @@ const props = defineProps({
     type: Object
   }
 })
-
-console.log(props.character)
-
 </script>
