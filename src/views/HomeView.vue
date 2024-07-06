@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import Card from '@/Components/Card.vue';
+import Card from '@/components/Card.vue';
 import router from '@/router'
 let character = ref([])
 let page = ref(1)
