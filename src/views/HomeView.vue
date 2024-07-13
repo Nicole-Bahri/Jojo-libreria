@@ -16,10 +16,12 @@ async function loadCharacters() {
   )
   const data = await response.json()
   character.value = data
+  console.log("asdasdasd",character.value)
+ changePage()
 }
 
 const changePage = () => {
-  actualCharacters.value = character.value.slice(page.value.start, page.value.end)
+  actualCharacters.value = character.value.slice(page.value.start , page.value.end)
   console.log(actualCharacters)
   page.value.start = page.value.start + 10
   page.value.end = page.value.end + 10
@@ -29,13 +31,21 @@ const changePage = () => {
 }
 
 const previousPage = () => {
-  actualCharacters.value = character.value.slice(page.value.start, page.value.end)
-  console.log(actualCharacters)
+const isFirstPage =  actualCharacters.value[0].id == 11? true  : false
+
+
+  if(isFirstPage == false &&  page.value.start!= 0 && page.value.end !=10){
+    actualCharacters.value = character.value.slice(page.value.start -10, page.value.end -10)
+
   page.value.start = page.value.start - 10
   page.value.end = page.value.end - 10
 
-  console.log('start', page.value.start)
-  console.log('end', page.value.end)
+  }
+ else if(isFirstPage == true){
+    page.value.start= 0
+    page.value.end=10
+    actualCharacters.value = character.value.slice(page.value.start, page.value.end)
+  }
 }
 
 loadCharacters()
